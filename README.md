@@ -1,2 +1,2 @@
 # malirod.github.io
-Rodion Malinovsky Blog
+Rodion Malinovsky Personal Website
