@@ -1,9 +1,6 @@
 ---
 layout: post
 title: Developer or designer?
-image: devdes.jpg
-image-source: http://www.freepik.com/
-image-author: FreePik
 ---
 
 Today I'll be writing about differences between designers and developers in web industry. Of course, my opinion may be changed in near future, but that's exactly the main reason I write this blog - to see if and how much I as a developer, designer and as a person grew throught time.

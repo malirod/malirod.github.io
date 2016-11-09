@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Let's build React component
-image: reactlogo.png
 ---
 
 A few weeks ago I bought myself a book about React basics called [Learn Pure React](https://daveceddia.com/learn-pure-react/) and started reading it. After few pages I decided to write my first blog post about the most basic feature of React - component.
