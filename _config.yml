@@ -1,8 +1,8 @@
 # Site settings
 title: Rodion Malinovsky - Personal Website
 email: rodionmalino@gmail.com
-description: I'm Renato. I am Front End Developer and Designer based in Croatia. I'm always availible for freelance work. Contact me!
-url: "https://malirod.github.io/" 
+description: I'm Rodion. I'm Team Lead & Software Developer.
+url: "https://malirod.github.io/"
 
 # Build settings
 markdown: kramdown
