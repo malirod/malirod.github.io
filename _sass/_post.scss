@@ -2,7 +2,7 @@
 
 article.container.post {
 	margin-top: $header-height + $margin-xs;
-	padding: $margin-s;
+	padding: $margin-xs;
 
 	background: $white;
 	border-radius: 5px;
@@ -14,13 +14,12 @@ article.container.post {
 .post {
 	position: relative;
 	padding-top: $header-height;
-	margin: 0 auto $margin-s auto;
+	margin: 0 auto $margin-xs auto;
 	max-width: 768px;
 
 	p {
-		margin-bottom: $margin-s;
+		margin-bottom: $margin-xs;
 
-		// typography
 		font-family: $serif;
 		font-size: $textSize-m;
 		font-weight: 400;
@@ -29,14 +28,13 @@ article.container.post {
 	}
 
 	a {
-	// typography
-	color: $blue;
-	border-bottom: 1px solid #e6dfdf;
-		&:hover,&:focus {
-			text-decoration: none;
-			color: $blue;
-			border-bottom: 1px solid $blue;
-		}
+        color: $blue;
+        border-bottom: 1px solid #e6dfdf;
+        &:hover,&:focus {
+            text-decoration: none;
+            color: $blue;
+            border-bottom: 1px solid $blue;
+        }
 	}
 	blockquote {
     padding: 15px 30px 15px 15px;
@@ -48,6 +46,23 @@ article.container.post {
 		white-space: normal;
 		line-height: 1.5;
 	}
+
+    ul {
+        list-style-type: disc;
+        padding-left: 40px;
+
+        margin-bottom: $margin-xs;
+        font-family: $serif;
+        font-size: $textSize-m;
+        font-weight: 400;
+        line-height: 1.6;
+        color: $text-color;
+     }
+    ol { list-style-type: decimal; padding-left: 40px; }
+    li { display: list-item; }
+    h2 { margin-top: 2%;}
+    h3 { margin-top: 2%;}
+    h4 { margin-top: 2%;}
 
 }
 
@@ -80,7 +95,6 @@ article.container.post {
 
 
 a {
-	// typography
 	color: $text-color;
 
 	&:hover,&:focus {
@@ -90,7 +104,7 @@ a {
 }
 
 h1 a {
-	display: block; // mora biti radi duzih naslova koji nestaju na manjim uredajima
+	display: block;
 	text-align: left;
 	border-bottom: none !important;
 	@include textGradient(darken($blue-dark,5%),darken($blue-light,15%),darken($blue-dark,15%));

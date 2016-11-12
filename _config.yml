@@ -29,3 +29,4 @@ defaults:
 gems: [jekyll-paginate]
 paginate: 3
 paginate_path: "/blog/page/:num"
+comments: true

@@ -3,13 +3,11 @@
 	margin-bottom: $margin-s;
 }
 .btn-back {
-	position: fixed;
+	position: relative;
 	top: -7px;
-	left: 5%;
 	width: 22px;
 	z-index: 6;
 	border: none !important;
-
 	&:hover {
 		text-decoration: none;
 	}
