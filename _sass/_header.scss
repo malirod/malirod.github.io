@@ -10,14 +10,14 @@ header {
 	transition: top 0.2s ease-in-out;
 	.avatar-vector {
 					position: absolute;
-					top: 6px;
+					top: 7px;
 					left: 50%;
 					transform: translate(-50%, 0);
 
-					height: 55px;
-					width: 55px;
+					height: 52px;
+					width: 52px;
 
-					background-image: url("../img/main-logo-header.png");
+					background-image: url("../img/main-logo-header-52.png");
 					background-size: cover;
 					background-position: center;
 
@@ -39,10 +39,10 @@ header {
 			left: 50%;
 			transform: translate(-50%, 0);
 
-			height: 55px;
-			width: 55px;
+			height: 48px;
+			width: 48px;
 
-			background-image: url("../img/main-logo-header.png");
+			background-image: url("../img/main-logo-header-48.png");
 
 			z-index: 6;
 		}
