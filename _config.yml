@@ -10,8 +10,6 @@ permalink: pretty
 kramdown:
   input: GFM
   hard_wrap: false
-  syntax_highlighter_opts:
-    disable: true
 
 # Default settings
 defaults:
@@ -32,6 +30,6 @@ defaults:
 
 # Gems
 gems: [jekyll-paginate]
-paginate: 3
+paginate: 5
 paginate_path: "/blog/page/:num"
 comments: true

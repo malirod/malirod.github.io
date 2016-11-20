@@ -24,16 +24,16 @@ I had interesting timings locally which reproduced on CI (see [the CI build log]
 Build of test app with boost takes almost twice longer than with log4cplus. Logging with boost is almost twice slower than with log4cplus. Async logging is **slower** than Sync logging for both boost and log4cplus.
 This is actually quite interesting. Possibly there is no need to bother with async logging at all.
 
-| Mode | Timing |
-|:----------|-------------:|
-| Build (clang, debug) with boost | 11.681s |
-| Build (clang, release) with boost | 18.037s |
-| Build (clang, debug) with log4cplus | 6.683s |
-| Build (clang, release) with log4cplus | 11.635s |
-| Run (clang, debug, async, boost) | 317 ms |
-| Run (clang, debug, async, log4cplus) | 155 ms |
-| Run (clang, debug, sync, boost) | 256 ms |
-| Run (clang, debug, sync, log4cplus) | 137 ms |
+ **Mode** | **Timing**
+:---:|---:
+Build (clang, debug) with boost | 11.681s
+Build (clang, release) with boost | 18.037s
+Build (clang, debug) with log4cplus | 6.683s
+Build (clang, release) with log4cplus | 11.635s
+Run (clang, debug, async, boost) | 317 ms
+Run (clang, debug, async, log4cplus) | 155 ms
+Run (clang, debug, sync, boost) | 256 ms
+Run (clang, debug, sync, log4cplus) | 137 ms
 
 
 Additionally I want to mention support from log4cplus maintainer. During my investigations I’ve posted several issues to GitHub and I’ve got feedback very fast (during few hours) and [crash](https://github.com/log4cplus/log4cplus/issues/205) which I’ve found on unstable version was addressed with pull request with fix during the same day.
