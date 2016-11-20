@@ -1,0 +1,112 @@
+---
+layout: post
+title: Cooking C++ Singleton. The right way.
+---
+Let me share ideas how to use singletons in C++ without its known drawbacks.
+Don’t hesitate to give some feedback.
+
+## Summary
+Usually application has some global objects which can be used in different components on different levels\layers. E.g. config, engine, tasks scheduler etc. It’s desirable to have a possibility to pass such global objects to any component and layer of the app easily and have a possibility to set some other implementation of the object if required(mock for tests).
+
+## Challenge
+There are two approaches
+
+#### Pass & store ref to global object.
+E.g. config is created in main function and passed to all required places though ctors or methods args. So we end up with a code where global objects\interfaces are sticking around.
+
+#### Use some kind of global objects
+
+- Simple global object defined out of main and access with “extern” from the rest of components. This is really wrong approach due to many reasons, e.g. construction and destruction order is undefined, cannot use global objects from each other, not easy to replace real impl with some mock in tests.
+- Use singleton pattern with deferred construction.
+E.g. the following implementation (note: before c++11 this impl is not thread-safe since static construction is not thread-safe)
+
+{% highlight cpp %}
+ObjType& GetInstance() {
+ static ObjType instance;
+ return instance;
+}
+{% endhighlight %}
+
+
+If this function is called somewhere in the beginning of the main then we will have predictable init order. If code will be used before any thread is created then we don’t care about data races on construction of the static value, thus this is usable even in pre-C++11. But there are issues: hard to mock, destruction order is undefined and destruction starts after main when some parts of system can be already destroyed.
+
+## Solution
+Two simple ideas “template tagging” and “accessor” allow to keep benefits of global objects and remove all drawbacks. Tagging is implemented in the following way
+
+{% highlight cpp %}
+template <typename T, typename Tag = T>
+T& single() {
+ static T t;
+ return t;
+}
+{% endhighlight %}
+
+
+This allows to get multiple singletons of the same type
+
+{% highlight cpp %}
+class CustomTag;
+auto& foo = single<Foo>();
+auto& custom_foo = single<Foo, CustomTag>();
+{% endhighlight %}
+
+
+Accessor has the following implementation
+
+{% highlight cpp %}
+template <typename T, typename Tag = T>
+class SingleAccessor {
+public:
+ void Attach(T& single);
+ void Detach();
+ bool GetIsAttached() const;
+ operator T&();
+ T& GetRef();
+private:
+ T* ptr_single_ = nullptr;
+};
+{% endhighlight %}
+
+
+## Usage sample
+Define accessor(pay attention that accessor references to interface but not to the implementation)
+
+
+{% highlight cpp %}
+using IoServiceAccessor =SingleAccessor<IIoService>;
+
+IoServiceAccessor& GetDefaultIoServiceAccessorInstance() {
+  return single<IoServiceAccessor>();
+}
+
+{% endhighlight %}
+
+Somewhere in main
+
+{% highlight cpp %}
+using IoServiceAccessor =SingleAccessor<IIoService>;
+
+thread_pool_ = util::make_unique<ThreadPool>(thread_pool_size, "main");
+GetDefaultIoServiceAccessorInstance().Attach(*thread_pool_);
+GetDefaultSchedulerAccessorInstance().Attach(*thread_pool_);
+
+// Do the job
+// Access this way
+auto& asio_service =
+  GetDefaultIoServiceAccessorInstance().GetRef().GetAsioService();
+// ...
+GetDefaultIoServiceAccessorInstance().Detach();
+GetDefaultSchedulerAccessorInstance().Detach();
+{% endhighlight %}
+
+See the following links for implementation details
+
+- [Implementation](https://github.com/malirod/cppecho/blob/master/src/util/singleton.h)
+- [Tests](https://github.com/malirod/cppecho/blob/master/test/util/singleton_test.cc)
+- [Usage sample](https://github.com/malirod/cppecho/blob/master/src/core/engine_launcher.cc)
+
+## Benefits
+Construction and destruction of the objects are well defined. Since accessor is defined basing on interface we can replace implementation easily and this way pass desired implementation to any component\layer. Tagging allows to have few global objects E.g. “main scheduler” for common tasks, “network scheduler” for network io tasks etc.
+
+## Disadvantages
+I see no disadvantages, except the fact that such approach might encourage a developer to create too much singletons so app will become more complicated (architecture not clear and straightforward).
