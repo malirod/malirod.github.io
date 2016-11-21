@@ -104,6 +104,36 @@ article.container.post {
     h2 { margin-top: 2%;}
     h3 { margin-top: 2%;}
     h4 { margin-top: 2%;}
+
+    // Code
+
+    code, pre {
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+    code {
+        padding: 2px 4px;
+        font-size: 90%;
+        border-radius: 4px;
+    }
+
+    pre {
+        display: block;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        word-break: break-all;
+        word-wrap: break-word;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    pre code {
+        padding: 0;
+        font-size: inherit;
+        white-space: pre-wrap;
+        border-radius: 0;
+    }
 }
 
 .post__container {

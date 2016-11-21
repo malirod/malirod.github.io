@@ -10,6 +10,7 @@ permalink: pretty
 kramdown:
   input: GFM
   hard_wrap: false
+highlighter: rouge
 
 # Default settings
 defaults:
