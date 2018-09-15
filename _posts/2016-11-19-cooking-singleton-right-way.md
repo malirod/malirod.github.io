@@ -95,9 +95,9 @@ GetDefaultSchedulerAccessorInstance().Detach();
 
 See the following links for implementation details
 
-- [Implementation](https://github.com/malirod/cppecho/blob/master/src/util/singleton.h)
-- [Tests](https://github.com/malirod/cppecho/blob/master/test/util/singleton_test.cc)
-- [Usage sample](https://github.com/malirod/cppecho/blob/master/src/core/engine_launcher.cc)
+- [Implementation](https://github.com/malirod/flat-async/blob/8fb7489757cd68c4271580f15d58dd5cf70ab605/flatasync/src/util/singleton.h)
+- [Tests](https://github.com/malirod/flat-async/blob/8fb7489757cd68c4271580f15d58dd5cf70ab605/flatasync/test/util/singleton_test.cc)
+- [Usage sample](https://github.com/malirod/flat-async/blob/8fb7489757cd68c4271580f15d58dd5cf70ab605/cppecho/src/core/engine_launcher.cc)
 
 ## Benefits
 Construction and destruction of the objects are well defined. Since accessor is defined basing on interface we can replace implementation easily and this way pass desired implementation to any component\layer. Tagging allows to have few global objects E.g. “main scheduler” for common tasks, “network scheduler” for network io tasks etc.
